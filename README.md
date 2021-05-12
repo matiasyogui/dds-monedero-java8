@@ -1,7 +1,7 @@
 ## Monedero
 
 ### Code Smells:
-# Detectados y comentados en el primer commit mio.
+Detectados y comentados en el primer commit mio.
 
 ### Contexto
 
