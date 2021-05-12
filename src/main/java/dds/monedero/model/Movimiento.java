@@ -50,12 +50,15 @@ public class Movimiento {
   }
 
   //Misplaced method
-  //Duplicated Code
   public double calcularValor(Cuenta cuenta) {
+    return cuenta.getSaldo() + getMontoPorDeposito();
+  }
+
+  public double getMontoPorDeposito() {
     if (esDeposito) {
-      return cuenta.getSaldo() + getMonto();
+      return getMonto();
     } else {
-      return cuenta.getSaldo() - getMonto();
+      return -getMonto();
     }
   }
 }
