@@ -1,5 +1,8 @@
 ## Monedero
 
+### Code Smells:
+# Detectados y comentados en el primer commit mio.
+
 ### Contexto
 
 Este repositorio contiene el código de un _monedero virtual_, al que podemos agregarle y quitarle dinero, a través 
