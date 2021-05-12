@@ -14,6 +14,7 @@ public class Cuenta {
   private double saldo = 0;
   private List<Movimiento> movimientos = new ArrayList<>();
 
+  //Duplicated Code, se podria sacar directamente los constructores, ya que ya esta seteado que empiece en 0 y se le peude setar el monto deseado.
   public Cuenta() {
     saldo = 0;
   }
@@ -26,6 +27,9 @@ public class Cuenta {
     this.movimientos = movimientos;
   }
 
+  //Duplicated Code entre poner y sacar en la exception
+  //Long method, el filter en el if podria ser otra funcion aparte
+  //Feature Envy al agregar la validacion del dia, se podria usar la funcion de fueDepositado(fecha)
   public void poner(double cuanto) {
     if (cuanto <= 0) {
       throw new MontoNegativoException(cuanto + ": el monto a ingresar debe ser un valor positivo");
@@ -59,6 +63,8 @@ public class Cuenta {
     movimientos.add(movimiento);
   }
 
+  //Long method, se puede dividir en una funcion que filtre y luego que mapee
+  //Feature Envy en el filter, se podria usar la funcion fueExtraido(fecha) de Movimiento
   public double getMontoExtraidoA(LocalDate fecha) {
     return getMovimientos().stream()
         .filter(movimiento -> !movimiento.isDeposito() && movimiento.getFecha().equals(fecha))
