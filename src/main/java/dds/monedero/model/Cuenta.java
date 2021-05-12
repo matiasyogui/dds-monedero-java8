@@ -20,13 +20,12 @@ public class Cuenta {
 
   //Duplicated Code entre poner y sacar en la exception
   //Long method, el filter en el if podria ser otra funcion aparte
-  //Feature Envy al agregar la validacion del dia, se podria usar la funcion de fueDepositado(fecha)
   public void poner(double cuanto) {
     if (cuanto <= 0) {
       throw new MontoNegativoException(cuanto + ": el monto a ingresar debe ser un valor positivo");
     }
 
-    if (getMovimientos().stream().filter(movimiento -> movimiento.isDeposito()).count() >= 3) {
+    if (getMovimientos().stream().filter(movimiento -> movimiento.fueDepositado(LocalDate.now())).count() >= 3) {
       throw new MaximaCantidadDepositosException("Ya excedio los " + 3 + " depositos diarios");
     }
 
@@ -55,10 +54,9 @@ public class Cuenta {
   }
 
   //Long method, se puede dividir en una funcion que filtre y luego que mapee
-  //Feature Envy en el filter, se podria usar la funcion fueExtraido(fecha) de Movimiento
   public double getMontoExtraidoA(LocalDate fecha) {
     return getMovimientos().stream()
-        .filter(movimiento -> !movimiento.isDeposito() && movimiento.getFecha().equals(fecha))
+        .filter(movimiento -> movimiento.fueExtraido(fecha))
         .mapToDouble(Movimiento::getMonto)
         .sum();
   }
