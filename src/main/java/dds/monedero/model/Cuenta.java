@@ -14,15 +14,6 @@ public class Cuenta {
   private double saldo = 0;
   private List<Movimiento> movimientos = new ArrayList<>();
 
-  //Duplicated Code, se podria sacar directamente los constructores, ya que ya esta seteado que empiece en 0 y se le peude setar el monto deseado.
-  public Cuenta() {
-    saldo = 0;
-  }
-
-  public Cuenta(double montoInicial) {
-    saldo = montoInicial;
-  }
-
   public void setMovimientos(List<Movimiento> movimientos) {
     this.movimientos = movimientos;
   }
